@@ -40,6 +40,22 @@ class BookCardsNav extends StatelessWidget {
           SizedBox(
             width: 15.0,
           ),
+          BookCard(
+            thumbnail:
+                "https://i2.wp.com/www.programmer-books.com/wp-content/uploads/2018/08/datastructure.png?w=468&ssl=1",
+            title: 'Data Structures and Program Design Using C',
+          ),
+          SizedBox(
+            width: 15.0,
+          ),
+          BookCard(
+            thumbnail:
+                "https://i1.wp.com/www.programmer-books.com/wp-content/uploads/2020/06/99557a9d3f76650.jpg?resize=200%2C243&ssl=1",
+            title: 'Microsoft SharePoint 2013 Administration Inside Out',
+          ),
+          SizedBox(
+            width: 15.0,
+          ),
         ],
       ),
     );

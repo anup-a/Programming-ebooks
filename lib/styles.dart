@@ -64,3 +64,19 @@ TextStyle kBookDescriptionStyle = TextStyle(
   fontWeight: FontWeight.normal,
   color: Colors.grey,
 );
+
+TextStyle kBookTitleStyle = TextStyle(
+  fontSize: 16.0,
+  fontFamily: 'ProductSans',
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+  letterSpacing: 2.0,
+);
+
+dynamic kBoxShadowStyle = [
+  BoxShadow(
+    color: Colors.black.withOpacity(0.25),
+    blurRadius: 15.0, // soften the shadow
+    spreadRadius: 5.0, //extend the shadow
+  )
+];

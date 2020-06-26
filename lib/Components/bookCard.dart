@@ -1,11 +1,12 @@
-import 'package:ebookApp/bookDetails.dart';
+import 'package:ebookApp/Components/bookDetails/bookDetails.dart';
 import 'package:ebookApp/styles.dart';
 import 'package:flutter/material.dart';
 
 class BookCard extends StatelessWidget {
-  const BookCard({this.thumbnail, this.title});
+  const BookCard({this.thumbnail, this.title, this.pdfLink});
   final thumbnail;
   final title;
+  final pdfLink;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +18,7 @@ class BookCard extends StatelessWidget {
             builder: (context) => BookDetails(
               thumbnail: thumbnail,
               title: title,
+              pdfLink: pdfLink,
             ),
           ),
         );

@@ -1,4 +1,4 @@
-import 'package:ebookApp/bookDetails.dart';
+import 'package:ebookApp/Components/bookDetails/bookDetails.dart';
 import 'package:ebookApp/styles.dart';
 import 'package:flutter/material.dart';
 

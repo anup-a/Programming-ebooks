@@ -1,6 +1,5 @@
 import 'package:ebookApp/Components/bookCardNav.dart';
 import 'package:ebookApp/Components/booksList.dart';
-import 'package:ebookApp/bookDetails.dart';
 import 'package:ebookApp/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -25,9 +24,6 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
-      routes: {
-        "/bookDetails": (context) => BookDetails(),
-      },
     );
   }
 }

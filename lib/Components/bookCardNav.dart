@@ -18,9 +18,12 @@ class BookCardsNav extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: <Widget>[
           BookCard(
-              thumbnail:
-                  "https://i1.wp.com/www.programmer-books.com/wp-content/uploads/2019/05/C-and-XML-Primer.jpg?w=330&ssl=1",
-              title: 'C# and XML Primer'),
+            thumbnail:
+                "https://i1.wp.com/www.programmer-books.com/wp-content/uploads/2019/05/C-and-XML-Primer.jpg?w=330&ssl=1",
+            title: 'C# and XML Primer',
+            pdfLink:
+                "https://www.programmer-books.com/wp-content/uploads/2019/05/C-and-XML-Primer.pdf",
+          ),
           SizedBox(
             width: 15.0,
           ),
@@ -28,6 +31,8 @@ class BookCardsNav extends StatelessWidget {
             thumbnail:
                 "https://i0.wp.com/www.programmer-books.com/wp-content/uploads/2019/01/Angular-2-Development-with-TypeScript.jpg?w=720&ssl=1",
             title: 'Angular 2 Development',
+            pdfLink:
+                "https://www.programmer-books.com/wp-content/uploads/2019/05/C-and-XML-Primer.pdf",
           ),
           SizedBox(
             width: 15.0,
@@ -36,6 +41,8 @@ class BookCardsNav extends StatelessWidget {
             thumbnail:
                 "https://i0.wp.com/www.programmer-books.com/wp-content/uploads/2019/04/Concurrency-in-Go.jpg?w=381&ssl=1",
             title: 'Concurrency in Go',
+            pdfLink:
+                "https://www.programmer-books.com/wp-content/uploads/2019/05/C-and-XML-Primer.pdf",
           ),
           SizedBox(
             width: 15.0,
@@ -44,6 +51,8 @@ class BookCardsNav extends StatelessWidget {
             thumbnail:
                 "https://i2.wp.com/www.programmer-books.com/wp-content/uploads/2018/08/datastructure.png?w=468&ssl=1",
             title: 'Data Structures and Program Design Using C',
+            pdfLink:
+                "https://www.programmer-books.com/wp-content/uploads/2019/05/C-and-XML-Primer.pdf",
           ),
           SizedBox(
             width: 15.0,
@@ -52,6 +61,8 @@ class BookCardsNav extends StatelessWidget {
             thumbnail:
                 "https://i1.wp.com/www.programmer-books.com/wp-content/uploads/2020/06/99557a9d3f76650.jpg?resize=200%2C243&ssl=1",
             title: 'Microsoft SharePoint 2013 Administration Inside Out',
+            pdfLink:
+                "https://www.programmer-books.com/wp-content/uploads/2019/05/C-and-XML-Primer.pdf",
           ),
           SizedBox(
             width: 15.0,

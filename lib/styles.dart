@@ -73,10 +73,62 @@ TextStyle kBookTitleStyle = TextStyle(
   letterSpacing: 2.0,
 );
 
-dynamic kBoxShadowStyle = [
+TextStyle kDrawerTextStyle = TextStyle(
+  fontSize: 22.0,
+  fontFamily: 'ProductSans',
+  fontWeight: FontWeight.bold,
+  letterSpacing: 1.0,
+  color: Colors.white.withOpacity(0.65),
+);
+
+TextStyle kDrawerActiveTextStyle = kDrawerTextStyle.copyWith(
+  color: Colors.white,
+);
+
+List<BoxShadow> kBoxShadowStyle = [
   BoxShadow(
     color: Colors.black.withOpacity(0.25),
     blurRadius: 15.0, // soften the shadow
     spreadRadius: 5.0, //extend the shadow
   )
 ];
+
+List<BoxShadow> shadowList = [
+  BoxShadow(color: Colors.grey[300], blurRadius: 30, offset: Offset(0, 10))
+];
+
+List<BoxShadow> kBoxShadowWidgetStyle = [
+  BoxShadow(
+    color: Colors.black.withOpacity(0.25),
+    blurRadius: 15.0, // soften the shadow
+    spreadRadius: 10.0, //extend the shadow
+  )
+];
+
+class DecorationLine extends StatelessWidget {
+  const DecorationLine({
+    Key key,
+    this.color = Colors.black,
+    this.leftPadding = 30.0,
+    this.width = 100.0,
+    this.height = 20.0,
+  }) : super(key: key);
+
+  final Color color;
+  final double leftPadding;
+  final double width;
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      padding: EdgeInsets.only(left: leftPadding, bottom: 10.0),
+      child: Divider(
+        color: color,
+        height: height,
+        thickness: 5.0,
+      ),
+    );
+  }
+}

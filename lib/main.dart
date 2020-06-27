@@ -1,12 +1,11 @@
 import 'package:ebookApp/Components/bookCardNav.dart';
 import 'package:ebookApp/Components/booksList.dart';
+import 'package:ebookApp/drawerScreen.dart';
 import 'package:ebookApp/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:ebookApp/Components/searchBar.dart';
 import 'package:ebookApp/Components/tabBar.dart';
 import 'icons.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(MyApp());
@@ -47,41 +46,84 @@ class _HomeScreenState extends State<HomeScreen>
     tabController = TabController(vsync: this, length: 5);
   }
 
+  double xOffset = 0;
+  double yOffset = 0;
+  double scaleFactor = 1.0;
+  bool isDrawerOpen = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: ListView(
+        body: Stack(
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(25.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            DrawerScreen(),
+            AnimatedContainer(
+              transform: Matrix4.translationValues(xOffset, yOffset, 0)
+                ..scale(scaleFactor)
+                ..rotateY(isDrawerOpen ? -0.5 : 0),
+              duration: Duration(milliseconds: 250),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(isDrawerOpen ? 40 : 0.0),
+                boxShadow: kBoxShadowWidgetStyle,
+              ),
+              child: ListView(
                 children: <Widget>[
-                  Icon(
-                    MyFlutterApp.noun_mobile_menu_345384,
-                    size: 40.0,
+                  Padding(
+                    padding: EdgeInsets.all(25.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        isDrawerOpen
+                            ? IconButton(
+                                icon: Icon(Icons.arrow_back_ios),
+                                onPressed: () {
+                                  setState(() {
+                                    xOffset = 0;
+                                    yOffset = 0;
+                                    scaleFactor = 1;
+                                    isDrawerOpen = false;
+                                  });
+                                },
+                              )
+                            : IconButton(
+                                icon: Icon(
+                                  MyFlutterApp.noun_mobile_menu_345384,
+                                  size: 35.0,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    xOffset = 230;
+                                    yOffset = 150;
+                                    scaleFactor = 0.6;
+                                    isDrawerOpen = true;
+                                  });
+                                },
+                              ),
+                        CircleAvatar(
+                          radius: 20.0,
+                          backgroundImage: NetworkImage(
+                              "https://c.pxhere.com/photos/01/99/adult_beard_black_and_white_denim_jacket_facial_expression_facial_hair_fashion_fine_looking-1501223.jpg!d"),
+                        ),
+                      ],
+                    ),
                   ),
-                  CircleAvatar(
-                    radius: 20.0,
-                    backgroundImage: NetworkImage(
-                        "https://c.pxhere.com/photos/01/99/adult_beard_black_and_white_denim_jacket_facial_expression_facial_hair_fashion_fine_looking-1501223.jpg!d"),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30.0),
+                    child: Text(
+                      'Hey Geek',
+                      style: kWelcomeStyle,
+                      textAlign: TextAlign.left,
+                    ),
                   ),
+                  SearchBar(),
+                  TabNavigationBar(tabController: tabController),
+                  BookCardsNav(),
+                  BookList(),
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 30.0),
-              child: Text(
-                'Hey Geek',
-                style: kWelcomeStyle,
-                textAlign: TextAlign.left,
-              ),
-            ),
-            SearchBar(),
-            TabNavigationBar(tabController: tabController),
-            BookCardsNav(),
-            BookList(),
           ],
         ),
       ),

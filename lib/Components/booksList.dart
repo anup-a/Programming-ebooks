@@ -12,15 +12,7 @@ class BookList extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Container(
-          width: 100.0,
-          padding: const EdgeInsets.only(left: 30.0, bottom: 10.0),
-          child: Divider(
-            color: Colors.black,
-            height: 20.0,
-            thickness: 5.0,
-          ),
-        ),
+        DecorationLine(),
         Padding(
           padding: const EdgeInsets.only(left: 30.0, right: 30.0, bottom: 20.0),
           child: Row(

@@ -1,5 +1,6 @@
-import 'package:ebookApp/Components/bookCardNav.dart';
+import 'package:ebookApp/Components/HomePage/bookCardNav.dart';
 import 'package:ebookApp/Components/booksList.dart';
+import 'package:ebookApp/db/allBooks.dart';
 import 'package:ebookApp/drawerScreen.dart';
 import 'package:ebookApp/styles.dart';
 import 'package:flutter/material.dart';
@@ -120,7 +121,11 @@ class _HomeScreenState extends State<HomeScreen>
                   SearchBar(),
                   TabNavigationBar(tabController: tabController),
                   BookCardsNav(),
-                  BookList(),
+                  BookList(
+                    booksList: allBooksList,
+                    listTitle: "All Books",
+                    showAllBooksButton: true,
+                  ),
                 ],
               ),
             ),

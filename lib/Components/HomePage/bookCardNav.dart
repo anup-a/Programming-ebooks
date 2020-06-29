@@ -1,4 +1,4 @@
-import 'package:ebookApp/Components/bookCard.dart';
+import 'package:ebookApp/Components/HomePage/bookCard.dart';
 import 'package:flutter/material.dart';
 
 class BookCardsNav extends StatelessWidget {

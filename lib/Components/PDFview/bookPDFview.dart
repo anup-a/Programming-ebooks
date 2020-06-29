@@ -3,10 +3,17 @@ import 'package:ebookApp/styles.dart';
 import 'package:flutter/material.dart';
 
 class BookDetailsPDFview extends StatefulWidget {
-  BookDetailsPDFview({Key key, @required this.pdfLink, @required this.title})
+  BookDetailsPDFview(
+      {Key key,
+      this.pdfLink,
+      @required this.title,
+      this.downloaded = false,
+      this.pdfPath})
       : super(key: key);
   final pdfLink;
   final title;
+  final downloaded;
+  final pdfPath;
 
   @override
   _BookDetailsPDFviewState createState() => _BookDetailsPDFviewState();
@@ -22,11 +29,9 @@ class _BookDetailsPDFviewState extends State<BookDetailsPDFview> {
   }
 
   loadDocument() async {
-    print("this.widget.pdfLink");
-    print(this.widget.pdfLink);
-    document = await PDFDocument.fromURL(this.widget.pdfLink);
-    print(this.widget.pdfLink);
-
+    document = widget.downloaded
+        ? await PDFDocument.fromLocalAsset(this.widget.pdfPath)
+        : await PDFDocument.fromURL(this.widget.pdfLink);
     setState(() => _isLoading = false);
   }
 
@@ -43,15 +48,6 @@ class _BookDetailsPDFviewState extends State<BookDetailsPDFview> {
                 document: document,
                 zoomSteps: 1,
                 showPicker: true,
-                //uncomment below line to preload all pages
-                // lazyLoad: false,
-                // uncomment below line to scroll vertically
-                // scrollDirection: Axis.vertical,
-
-                // Load specific page
-                // PDFPage pageOne = await doc.get(page: _number);
-
-                //uncomment below code to replace bottom navigation with your own
                 navigationBuilder:
                     (context, page, totalPages, jumpToPage, animateToPage) {
                   return ButtonBar(

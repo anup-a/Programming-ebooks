@@ -77,6 +77,24 @@ class PDFDocument {
     return document;
   }
 
+  // From local asset
+  static Future<PDFDocument> fromLocalAsset(String filePath) async {
+    File file = File(filePath);
+    print("filePath");
+    print(filePath);
+
+    PDFDocument document = PDFDocument();
+    document._filePath = file.path;
+    try {
+      var pageCount = await _channel
+          .invokeMethod('getNumberOfPages', {'filePath': file.path});
+      document.count = document.count = int.parse(pageCount);
+    } catch (e) {
+      throw Exception('Error reading PDF!');
+    }
+    return document;
+  }
+
   /// Load specific page
   ///
   /// [page] defaults to `1` and must be equal or above it

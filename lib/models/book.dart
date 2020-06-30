@@ -6,6 +6,8 @@ class Book {
   String thumbnail;
   String description;
   String pdfPath;
+  String category;
+  List<String> tags;
 
   Book({
     this.title,
@@ -13,14 +15,20 @@ class Book {
     this.thumbnail,
     this.description,
     this.pdfPath = "",
+    this.category,
+    this.tags,
   });
 
   factory Book.fromJson(Map<String, dynamic> json) {
     return Book(
-        title: json['title'],
-        pdfLink: json['pdfLink'],
-        thumbnail: json['thumbnail'],
-        description: json['description']);
+      title: json['title'],
+      pdfLink: json['pdfLink'],
+      thumbnail: json['thumbnail'],
+      description: json['description'],
+      category: json['category'],
+      tags: json['tags'],
+      pdfPath: json['pdfPath'],
+    );
   }
 
   static Map<String, dynamic> toMap(Book book) => {
@@ -28,6 +36,9 @@ class Book {
         'pdfLink': book.pdfLink,
         'thumbnail': book.thumbnail,
         'description': book.description,
+        'category': book.category,
+        'tags': book.tags,
+        'pdfPath': book.pdfPath,
       };
 
   static String encodeBooks(List<Book> books) => json.encode(

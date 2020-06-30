@@ -121,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen>
                   SearchBar(),
                   TabNavigationBar(tabController: tabController),
                   BookCardsNav(),
-                  BookList(
+                  TopBookList(
                     booksList: allBooksList,
                     listTitle: "All Books",
                     showAllBooksButton: true,

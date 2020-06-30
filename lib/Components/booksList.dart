@@ -1,8 +1,8 @@
 import 'package:ebookApp/styles.dart';
 import 'package:flutter/material.dart';
 
-class BookList extends StatelessWidget {
-  const BookList({
+class TopBookList extends StatelessWidget {
+  const TopBookList({
     Key key,
     @required this.booksList,
     @required this.listTitle,

@@ -3,10 +3,8 @@ import 'package:ebookApp/styles.dart';
 import 'package:flutter/material.dart';
 
 class BookCard extends StatelessWidget {
-  const BookCard({this.thumbnail, this.title, this.pdfLink});
-  final thumbnail;
-  final title;
-  final pdfLink;
+  const BookCard({this.book});
+  final book;
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +14,7 @@ class BookCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => BookDetails(
-              thumbnail: thumbnail,
-              title: title,
-              pdfLink: pdfLink,
+              book: book,
             ),
           ),
         );
@@ -41,7 +37,7 @@ class BookCard extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                    thumbnail,
+                    book.thumbnail,
                   ),
                 ),
               ),
@@ -51,7 +47,7 @@ class BookCard extends StatelessWidget {
             ),
             Expanded(
               child: Text(
-                title,
+                book.title,
                 style: kCardBookStyle,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.fade,

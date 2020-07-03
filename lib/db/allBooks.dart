@@ -1,5 +1,7 @@
+import 'package:ebookApp/Components/HomePage/bookCard.dart';
 import 'package:ebookApp/Components/bookListItem.dart';
 import 'package:ebookApp/models/book.dart';
+import 'package:flutter/material.dart';
 
 List<Map<String, dynamic>> rawJsonData = [
   {
@@ -9,7 +11,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/C-and-XML-Primer.pdf",
     "tag": "['C# Language']",
-    "category": "Software Development"
+    "category": "Software Development",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "Python Unit Test Automation",
@@ -18,7 +24,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/Python-Unit-Test-Automation.pdf",
     "tag": "['Python Language']",
-    "category": "Software Development"
+    "category": "Software Development",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "Beginning C# 2008 Objects",
@@ -27,7 +37,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/Beginning-C-2008-Objects.pdf",
     "tag": "['C# Language']",
-    "category": "Software Development"
+    "category": "Software Development",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "Learning Concurrent Programming in Scala, 2nd Edition",
@@ -36,7 +50,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/Learning-Concurrent-Programming-in-Scala-2nd-Edition.pdf",
     "tag": "[]",
-    "category": ""
+    "category": "",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "Data Visualisation with R",
@@ -45,7 +63,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/Data-Visualisation-with-R.pdf",
     "tag": "['Data Science Books', 'Software Development', 'R Language']",
-    "category": "Artificial Intelligence Books"
+    "category": "Artificial Intelligence Books",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "Essentials of Computer Architecture, 2nd Edition",
@@ -54,7 +76,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/Essentials-of-Computer-Architecture-2nd-Edition.pdf",
     "tag": "['System Administrations']",
-    "category": "Software Development"
+    "category": "Software Development",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "Handbook of Big Data Technologies",
@@ -63,7 +89,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/Handbook-of-Big-Data-Technologies.pdf",
     "tag": "['System Administrations']",
-    "category": "Software Development"
+    "category": "Software Development",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "UNIX for Programmers and Users, 3rd Edition",
@@ -72,7 +102,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/UNIX-for-Programmers-and-Users-3rd-Edition.pdf",
     "tag": "['Linux Books', 'Software Development']",
-    "category": "System Administrations"
+    "category": "System Administrations",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "PostgreSQL Development Essentials",
@@ -81,7 +115,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/PostgreSQL-Development-Essentials.pdf",
     "tag": "['System Administrations']",
-    "category": "Software Development"
+    "category": "Software Development",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "Mastering IPython 4.0",
@@ -90,7 +128,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/Mastering-IPython-4.0.pdf",
     "tag": "['Python Language']",
-    "category": "Software Development"
+    "category": "Software Development",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "Django Project Blueprints",
@@ -99,7 +141,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/Django-Project-Blueprints.pdf",
     "tag": "['Python Language', 'Web development']",
-    "category": "Software Development"
+    "category": "Software Development",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "QGIS Python Programming Cookbook",
@@ -108,7 +154,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/QGIS-Python-Programming-Cookbook.pdf",
     "tag": "['Python Language']",
-    "category": "Software Development"
+    "category": "Software Development",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "Beginning Data Science in R",
@@ -117,7 +167,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/Beginning-Data-Science-in-R.pdf",
     "tag": "['Software Development', 'R Language']",
-    "category": "Data Science Books"
+    "category": "Data Science Books",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "Building Tools with GitHub",
@@ -126,7 +180,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/Building-Tools-with-GitHub.pdf",
     "tag": "['Github Books', 'Random Books', 'Software Development']",
-    "category": "Web development"
+    "category": "Web development",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "Xamarin Studio for Android Programming: A C# Cookbook",
@@ -135,7 +193,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/Xamarin-Studio-for-Android-Programming.pdf",
     "tag": "['Android', 'Software Development', 'C# Language']",
-    "category": "Mobile Development"
+    "category": "Mobile Development",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "Java All-In-One Desk Reference For Dummies",
@@ -144,7 +206,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/Java-All-In-One-Desk-Reference-For-Dummies.pdf",
     "tag": "['Java Language']",
-    "category": "Software Development"
+    "category": "Software Development",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "Java EE 7 Developer Handbook",
@@ -153,7 +219,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/Java-EE-7-Developer-Handbook.pdf",
     "tag": "['Java Language']",
-    "category": "Software Development"
+    "category": "Software Development",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "Java SOA Cookbook",
@@ -162,7 +232,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/Java-SOA-Cookbook.pdf",
     "tag": "['Java Language']",
-    "category": "Software Development"
+    "category": "Software Development",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "Java EE 7 Development with NetBeans 8",
@@ -171,7 +245,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/Java-EE-7-Development-with-NetBeans-8.pdf",
     "tag": "['Java Language']",
-    "category": "Software Development"
+    "category": "Software Development",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "Programming Interactivity",
@@ -180,7 +258,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/Programming-Interactivity.pdf",
     "tag": "['Web development']",
-    "category": "Software Development"
+    "category": "Software Development",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "Regular Expression Recipes for Windows Developers",
@@ -189,7 +271,11 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/Regular-Expression-Recipes-for-Windows-Developers.pdf",
     "tag": "['C# Language']",
-    "category": "Software Development"
+    "category": "Software Development",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   },
   {
     "title": "Pro Python Best Practices",
@@ -198,59 +284,44 @@ List<Map<String, dynamic>> rawJsonData = [
     "pdfLink":
         "https://www.programmer-books.com/wp-content/uploads/2019/05/Pro-Python-Best-Practices.pdf",
     "tag": "['Python Language']",
-    "category": "Software Development"
+    "category": "Software Development",
+    "pdfPath": "",
+    "description": "",
+    "isBookmarked": "false",
+    "isDownloaded": "false",
   }
 ];
 
-List<Book> generateBookObjects = rawJsonData.map((book) => Book.fromJson(book));
+List<BookListItem> getObjectFromJSON() {
+  List<BookListItem> generateBookObjects = [];
+  for (var book in rawJsonData) {
+    Book newbook = Book.fromJson(book);
+    generateBookObjects.add(
+      BookListItem(
+        book: newbook,
+      ),
+    );
+  }
+  return generateBookObjects;
+}
 
-List<BookListItem> allBooksList = [
-  BookListItem(
-    thumbnail:
-        'https://i1.wp.com/www.programmer-books.com/wp-content/uploads/2019/05/C-and-XML-Primer.jpg?w=330&ssl=1',
-    title: 'Build Your Own PaaS with Docker and Docker',
-    category: 'Software Dev',
-    pdfLink:
-        "https://www.programmer-books.com/wp-content/uploads/2019/05/C-and-XML-Primer.pdf",
-  ),
-  BookListItem(
-    thumbnail:
-        'https://i1.wp.com/www.programmer-books.com/wp-content/uploads/2020/06/99557a9d3f76650.jpg?resize=200%2C243&ssl=1',
-    title: 'Microsoft SharePoint 2013 Administration Inside Out',
-    category: 'Random',
-    pdfLink:
-        "https://www.programmer-books.com/wp-content/uploads/2019/05/C-and-XML-Primer.pdf",
-  ),
-  BookListItem(
-    thumbnail:
-        'https://i2.wp.com/www.programmer-books.com/wp-content/uploads/2020/06/Articulate-Storyline-Essentials1-400x493-1.jpg?w=400&ssl=1',
-    title: 'Articulate Storyline Essentials',
-    category: 'Software Dev',
-    pdfLink:
-        "https://www.programmer-books.com/wp-content/uploads/2018/09/jQueryUI_CH01.pdf",
-  ),
-  BookListItem(
-    thumbnail:
-        'https://i1.wp.com/www.programmer-books.com/wp-content/uploads/2019/05/C-and-XML-Primer.jpg?w=330&ssl=1',
-    title: 'Build Your Own PaaS with Docker and Docker',
-    category: 'Software Dev',
-    pdfLink:
-        "https://www.programmer-books.com/wp-content/uploads/2018/09/jQueryUI_CH01.pdf",
-  ),
-  BookListItem(
-    thumbnail:
-        'https://i2.wp.com/www.programmer-books.com/wp-content/uploads/2018/08/datastructure.png?w=468&ssl=1',
-    title: 'Data Structures and Program Design Using C',
-    category: 'Software Dev',
-    pdfLink:
-        "https://www.programmer-books.com/wp-content/uploads/2018/09/jQueryUI_CH01.pdf",
-  ),
-  BookListItem(
-    thumbnail:
-        'https://i2.wp.com/www.programmer-books.com/wp-content/uploads/2018/08/datastructure.png?w=468&ssl=1',
-    title: 'Data Structures and Program Design Using C',
-    category: 'Software Dev',
-    pdfLink:
-        "https://www.programmer-books.com/wp-content/uploads/2018/09/jQueryUI_CH01.pdf  ",
-  )
-];
+List<Widget> getBookCardsfromJSON() {
+  List<Widget> generateBookObjects = [];
+  for (var book in rawJsonData) {
+    Book newbook = Book.fromJson(book);
+    generateBookObjects.add(
+      BookCard(
+        book: newbook,
+      ),
+    );
+    generateBookObjects.add(
+      SizedBox(
+        width: 15.0,
+      ),
+    );
+  }
+  return generateBookObjects.sublist(10);
+}
+
+List<BookListItem> allBooksList = getObjectFromJSON();
+List<Widget> allBookCards = getBookCardsfromJSON();

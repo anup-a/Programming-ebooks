@@ -1,15 +1,18 @@
-import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 import 'package:ebookApp/Components/PDFview/bookPDFview.dart';
 import 'package:ebookApp/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:ebookApp/configuration.dart';
 
 import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
 
 class BookDetailsBottomButtons extends StatefulWidget {
-  const BookDetailsBottomButtons({this.pdfLink, this.title});
+  const BookDetailsBottomButtons(
+      {this.pdfLink, this.title, this.onDownload, this.isDownloaded});
   final pdfLink;
   final title;
+  final isDownloaded;
+  final Function onDownload;
 
   @override
   _BookDetailsBottomButtonsState createState() =>
@@ -39,9 +42,8 @@ class _BookDetailsBottomButtonsState extends State<BookDetailsBottomButtons> {
       isDownloading = true;
     });
     Dio dio = Dio();
+    var dir = await getApplicationDocumentsDirectory();
     try {
-      var dir = await getApplicationDocumentsDirectory();
-
       await dio.download(
           widget.pdfLink, "${dir.path}/${getIdfromLink(widget.pdfLink)}",
           onReceiveProgress: (rec, total) {
@@ -55,6 +57,9 @@ class _BookDetailsBottomButtonsState extends State<BookDetailsBottomButtons> {
     } catch (e) {
       print(e);
     }
+
+    this.widget.onDownload("${dir.path}/${getIdfromLink(widget.pdfLink)}");
+    print("added to downloads");
 
     setState(() {
       isDownloading = false;
@@ -134,6 +139,7 @@ class _BookDetailsBottomButtonsState extends State<BookDetailsBottomButtons> {
               downloadFile: downloadFile,
               progressString: progressString,
               progressValue: progressValue,
+              isDownloaded: widget.isDownloaded,
             ),
             Column(
               children: <Widget>[
@@ -156,19 +162,23 @@ class DownloaderButton extends StatelessWidget {
       this.viewFile,
       this.progressString,
       this.downloadFile,
-      this.progressValue});
+      this.progressValue,
+      this.isDownloaded});
   final bool fileDownloaded;
   final bool isDownloading;
   final String progressString;
   final Function viewFile;
   final Function downloadFile;
   final double progressValue;
+  final String isDownloaded;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: fileDownloaded ? viewFile : downloadFile,
-      child: fileDownloaded
+      onTap: ((isDownloaded.parseBool() || fileDownloaded))
+          ? viewFile
+          : downloadFile,
+      child: ((isDownloaded.parseBool() || fileDownloaded))
           ? Column(
               children: <Widget>[
                 Icon(Icons.view_headline),

@@ -1,13 +1,40 @@
 import 'package:ebookApp/Components/bookDetails/bookDetails.dart';
+import 'package:ebookApp/db/bookmarks.dart';
+import 'package:ebookApp/models/book.dart';
 import 'package:ebookApp/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:ebookApp/configuration.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class BookListItem extends StatelessWidget {
-  const BookListItem({this.title, this.category, this.thumbnail, this.pdfLink});
-  final title;
-  final category;
-  final thumbnail;
-  final pdfLink;
+class BookListItem extends StatefulWidget {
+  final Book book;
+  const BookListItem({this.book});
+
+  @override
+  _BookListItemState createState() => _BookListItemState();
+}
+
+class _BookListItemState extends State<BookListItem> {
+  bool isBookmarked = false;
+
+  void updateBookmark() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> storedBookmarks = (prefs.getStringList('bookmarks') ?? []);
+    print("storedBookmarks");
+    print(storedBookmarks);
+    String currentBook =
+        """{"title": "${widget.book.title}","thumbnail": "${widget.book.thumbnail}","pdfLink": "${widget.book.pdfLink}","tag": "${widget.book.tag}" ,"category": "${widget.book.category}","pdfPath": "${widget.book.pdfPath}","description": "${widget.book.description}", "isBookmarked": "true" }""";
+    storedBookmarks.add(currentBook);
+    print("book pushed");
+    await prefs.setStringList('bookmarks', storedBookmarks);
+    setState(() {
+      if (isBookmarked) {
+        isBookmarked = false;
+      } else {
+        isBookmarked = true;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +57,7 @@ class BookListItem extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                    thumbnail,
+                    widget.book.thumbnail,
                   ),
                 ),
               ),
@@ -42,39 +69,39 @@ class BookListItem extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => BookDetails(
-                        thumbnail: thumbnail,
-                        title: title,
-                        pdfLink: pdfLink,
+                        book: widget.book,
                       ),
                     ),
                   );
                 },
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      title,
-                      style: kBookListNameStyle,
-                      // overflow: TextOverflow.fade,
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          widget.book.title,
+                          style: kBookListNameStyle,
+                        ),
+                      ),
                     ),
                     Text(
-                      category,
+                      widget.book.category,
                       style: kBookListCaetgoryStyle,
                     )
                   ],
                 ),
               ),
             ),
-            MaterialButton(
-              minWidth: 50.0,
-              height: 50.0,
-              child: Icon(
-                Icons.collections_bookmark,
-                size: 30.0,
-                color: Colors.black,
-              ),
-              onPressed: () {},
+            IconButton(
+              icon: (widget.book.isBookmarked.parseBool() || isBookmarked)
+                  ? Icon(Icons.collections_bookmark)
+                  : Icon(Icons.bookmark),
+              iconSize: 30.0,
+              color: Colors.black,
+              onPressed: updateBookmark,
             )
           ]),
     );

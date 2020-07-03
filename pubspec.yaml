@@ -32,6 +32,7 @@ dependencies:
   flutter_svg: ^0.17.1
   dio: ^3.0.9
   path_provider: ^1.6.11
+  shared_preferences: ^0.5.7+3
   advance_pdf_viewer:
     path: ./advance_pdf_viewer-1.1.6
   

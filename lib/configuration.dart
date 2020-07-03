@@ -1,3 +1,6 @@
+import 'package:ebookApp/bookmarkList.dart';
+import 'package:ebookApp/downloadsList.dart';
+import 'package:ebookApp/main.dart';
 import 'package:flutter/material.dart';
 
 List<BoxShadow> shadowList = [
@@ -13,8 +16,34 @@ List<Map> categories = [
 ];
 
 List<Map> drawerItems = [
-  {'icon': Icons.mail, 'title': 'Home', 'isActive': true},
-  {'icon': Icons.favorite, 'title': 'Bookmarks', 'isActive': false},
-  {'icon': Icons.mail, 'title': 'Downloads', 'isActive': false},
-  {'icon': Icons.mail, 'title': 'About Me', 'isActive': false},
+  {
+    'icon': Icons.mail,
+    'title': 'Home',
+    'isActive': true,
+    'nextPage': HomeScreen()
+  },
+  {
+    'icon': Icons.favorite,
+    'title': 'Bookmarks',
+    'isActive': false,
+    'nextPage': BookmarkList()
+  },
+  {
+    'icon': Icons.mail,
+    'title': 'Downloads',
+    'isActive': false,
+    'nextPage': DownloadsList()
+  },
+  {
+    'icon': Icons.mail,
+    'title': 'About Me',
+    'isActive': false,
+    'nextPage': BookmarkList()
+  },
 ];
+
+extension BoolParsing on String {
+  bool parseBool() {
+    return this.toLowerCase() == 'true';
+  }
+}

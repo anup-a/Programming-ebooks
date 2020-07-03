@@ -1,56 +1,46 @@
 import 'package:ebookApp/Components/HomePage/bookCardNav.dart';
+import 'package:ebookApp/Components/bookLIst.dart';
+import 'package:ebookApp/Components/bookListItem.dart';
+import 'package:ebookApp/Components/searchBar.dart';
 import 'package:ebookApp/Components/topBooksList.dart';
 import 'package:ebookApp/db/allBooks.dart';
+import 'package:ebookApp/db/bookmarks.dart';
 import 'package:ebookApp/drawerScreen.dart';
+import 'package:ebookApp/icons.dart';
 import 'package:ebookApp/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:ebookApp/Components/searchBar.dart';
-import 'package:ebookApp/Components/tabBar.dart';
-import 'icons.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({
-    Key key,
-  }) : super(key: key);
+class BookmarkList extends StatefulWidget {
+  BookmarkList({Key key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _BookmarkListState createState() => _BookmarkListState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
-    with SingleTickerProviderStateMixin {
-  TabController tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    tabController = TabController(vsync: this, length: 5);
-  }
-
+class _BookmarkListState extends State<BookmarkList> {
   double xOffset = 0;
   double yOffset = 0;
   double scaleFactor = 1.0;
   bool isDrawerOpen = false;
+  bool booksLoading = true;
+  List<BookListItem> bookmarkBooksList = [];
+
+  Future<void> fetchBookObjects() async {
+    BookmarksData bookmarksData = BookmarksData();
+    await bookmarksData.getObjectFromJSON();
+    setState(() {
+      bookmarkBooksList = bookmarksData.getBookmarkedBooks();
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchBookObjects();
+    setState(() {
+      booksLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen>
                 borderRadius: BorderRadius.circular(isDrawerOpen ? 40 : 0.0),
                 boxShadow: kBoxShadowWidgetStyle,
               ),
-              child: ListView(
+              child: Column(
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.all(25.0),
@@ -110,21 +100,21 @@ class _HomeScreenState extends State<HomeScreen>
                       ],
                     ),
                   ),
+                  SearchBar(),
                   Padding(
-                    padding: const EdgeInsets.only(left: 30.0),
+                    padding: const EdgeInsets.all(25.0),
                     child: Text(
-                      'Hey Geek',
-                      style: kWelcomeStyle,
-                      textAlign: TextAlign.left,
+                      'Bookmarks',
+                      style: kHeadingStyle,
                     ),
                   ),
-                  SearchBar(),
-                  TabNavigationBar(tabController: tabController),
-                  BookCardsNav(),
-                  TopBookList(
-                    booksList: allBooksList,
-                    listTitle: "All Books",
-                    showAllBooksButton: true,
+                  Expanded(
+                    child: booksLoading
+                        ? SizedBox(
+                            height: 50.0,
+                            width: 50.0,
+                            child: CircularProgressIndicator())
+                        : BookList(bookList: bookmarkBooksList),
                   ),
                 ],
               ),

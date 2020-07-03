@@ -1,3 +1,4 @@
+import 'package:ebookApp/bookmarkList.dart';
 import 'package:ebookApp/configuration.dart';
 import 'package:ebookApp/styles.dart';
 import 'package:flutter/material.dart';
@@ -53,24 +54,34 @@ class _DrawerScreenState extends State<DrawerScreen> {
               children: drawerItems
                   .map((element) => Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Stack(
-                          overflow: Overflow.visible,
-                          children: [
-                            Text(
-                              element['title'],
-                              style: element['isActive']
-                                  ? kDrawerActiveTextStyle
-                                  : kDrawerTextStyle,
-                            ),
-                            Positioned(
-                              top: 14.0,
-                              child: DecorationLine(
-                                leftPadding: 0.0,
-                                color: Colors.white.withOpacity(0.25),
-                                width: 70.0,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => element['nextPage'],
                               ),
-                            ),
-                          ],
+                            );
+                          },
+                          child: Stack(
+                            overflow: Overflow.visible,
+                            children: [
+                              Text(
+                                element['title'],
+                                style: element['isActive']
+                                    ? kDrawerActiveTextStyle
+                                    : kDrawerTextStyle,
+                              ),
+                              Positioned(
+                                top: 14.0,
+                                child: DecorationLine(
+                                  leftPadding: 0.0,
+                                  color: Colors.white.withOpacity(0.25),
+                                  width: 70.0,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ))
                   .toList(),
